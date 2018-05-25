@@ -8,20 +8,40 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+        <style>
+        body{
+            font-family: sans-serif;
+            height: 100vh;
+            background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+        }
+        .container-min{
+            max-width: 768px;
+            box-shadow: 0 0 40px 1px rgba(225,225,225,.2);
+            background: rgba(244,244,244,.05);
+        }
+        .total{
+            font-size: 5rem;
+        }
+        h6{
+            opacity: .5;
+        }
+        </style>
 </head>
 
-<body style="background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);">
-    <div class="container">
-        <div class="col-12 my-3">
-            <h1 class="text-center text-light">前端修煉精神修煉屋 報名驗證系統</h1>
+<body class="d-flex align-items-center">
+    <div class="container text-center text-light container-min py-3 my-5 rounded">
+        <div class="row">
+            <div class="col-12  mb-5">
+                <h5 class="">前端修煉精神修煉屋-報名查詢系統</h5>
+                
+            </div>
         </div>
-        <div class="row align-items-center justify-content-center" style="height: calc(100vh - 5rem);">
-
+        <div class="row  justify-content-center my-5">
             <div class="col-md-6 col-12">
                 <div class="input-block">
-                    <h3 class="text-light text-center mb-3">請輸入報名信箱</h3>
+                    <p class="text-light text-center mb-4">請輸入報名信箱</p>
                     <div class="input-group mb-3">
-                        <input type="text" class="js-inputEmail form-control" placeholder="example@hexschool.com.tw" aria-label="Recipient's username"
+                        <input type="email" class="js-inputEmail form-control" placeholder="example@hexschool.com.tw" aria-label="Recipient's username"
                             aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-warning text-light btn-md js-search-email" type="button">送出查詢</button>
@@ -31,8 +51,15 @@
 
             </div>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="row mt-5">
+            <div class="col-12 text-right">
+                <h6>目前報名人數：<span class="total"></span></h6>
+            </div>
+        </div>
+        
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered " role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -50,7 +77,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -73,28 +99,45 @@
             xhr.onload = function () {
                 let callbackdata = JSON.parse(xhr.responseText);
                 let modalInfo = document.querySelector('.modal-body');
+                // time
+                let mytime = new Date(callbackdata.timeStamp);
+                let year = mytime.getFullYear();
+                let month = mytime.getMonth() + 1;
+                let day = mytime.getDate();
+                var hour = mytime.getHours();
+                var minute = mytime.getMinutes();
                 if (callbackdata.success == true) {
                     modalInfo.innerHTML =
                         `<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     `+ callbackdata.message + `</div>
                     <br>報名姓名:`+ callbackdata.nickName + `
-                    <br>報名時間:`+ getTime(callbackdata.timeStamp);
+                    <br>報名時間:`+ year + '/' + month + '/' + day + '/' + hour + ':' + minute;
                 } else {
                     modalInfo.innerHTML =
                         `<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     `+ callbackdata.message
+                    +'</div><a   class="btn btn-outline-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfgYklAoiTyJjHrmPfY0CHKRGwZgjN3rhKB0JtTRXCS7KH5Ew/viewform">點此報名</a>'
                 }
                 $('#infoModal').modal('toggle')
             }
 
         }
-        function getTime(time){
-            let myTime;
-             myTime = new Date(time);
-             return myTime;
-             
 
+        function getTotal(){
+            let total = document.querySelector('.total');
+            let xhr = new XMLHttpRequest;
+            xhr.open('get', 'https://www.thef2e.com/api/signUpTotal', true);
+            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+            xhr.send(null);
+            xhr.onload = function(){
+                let callbackdata = JSON.parse(xhr.responseText);
+                total.innerHTML = callbackdata.total;
+            }    
+           
+            setTimeout(getTotal,3000000);
         }
+        getTotal();
+        setTimeout(getTotal,3000000);
 
     </script>
 </body>
