@@ -16,9 +16,9 @@
                 <div class="head_title">
                     <h1 class="text-center">Todolist</h1>
                     <div class="sib_title">
-                        <h3>2018/06/10 SAT</h3>
+                        <h3 class="today">2018/06/10 SAT</h3>
                         <h3>
-                            <span class="big">4</span> Tasks left</h3>
+                            <span class="big">{{unDone}}</span> Tasks left</h3>
                     </div>
 
                 </div>
@@ -43,7 +43,7 @@
                     </label>
                     <div class="memo">
                         <h4 class="mb-3">{{item.title}}</h4>
-                        <p>2018/06/10</p>
+                        <p >2018/06/10</p>
                     </div>
                     <div class="tools">
                         <div class="fav">
@@ -112,6 +112,16 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script>
+        {
+
+            let time = new Date();
+            let year = time.getFullYear();
+            let month = time.getMonth()+1;
+            let date = time.getDate();
+            let day = time.getDay();
+            let dayEng = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+            document.querySelector('.today').textContent = year+'/'+month+'/'+date+'  '+dayEng[day]+'.';
+        }
         var app = new Vue({
             el: '#app',
             data: {
@@ -178,9 +188,20 @@
                     }                       
                     
                     
-                }
+                },unDone: function(){
+                    var unDoneList = [];
+                    this.todolist.forEach(function(item){
+                        if(!item.completed){
+                        unDoneList.push(item);
+                    }
+                    })
+                    
+                    return unDoneList.length;
+                },
             }
         })
+
+
     </script>
 </body>
 

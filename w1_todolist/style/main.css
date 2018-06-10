@@ -39,6 +39,9 @@ body {
   margin-top: 2rem;
   margin-bottom: 2rem; }
 
+.today {
+  letter-spacing: 1px; }
+
 header {
   color: #fff; }
   header .head_title {
