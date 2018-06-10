@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todolist</title>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="head_title">
+                <h1 class="text-center">Todolist</h1>
+                <div class="sib_title">
+                    <h3>2018/06/10 SAT</h3>
+                    <h3><span class="big">4</span> Tasks left</h3>
+                </div>
+
+            </div>
+            <nav>
+                <ul class="text-center">
+                    <li class="active">All</li>
+                    <li>In progress</li>
+                    <li>Completed</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="app">
+        <div class="container">
+                <input type="text" placeholder="Add task" class="input-task my-5">
+                <ul class="todo_list">
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="" id="">
+                            </label>
+                            <div class="memo">
+                                <h4 class="mb-3">下午要去買東西</h4>
+                                <p>2018/06/10</p>
+                            </div>
+                            <div class="tools">
+                                <div class="fav">
+                                    <img src="images/fav.png" alt="">
+                                </div>
+                                <div class="edit">
+                                    <img src="images/edit.png" alt="">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="active">
+                                <label for="">
+                                    <input type="checkbox" name="" id="">
+                                </label>
+                                <div class="memo">
+                                    <h4 class="mb-3">下午要去買東西</h4>
+                                    <p>2018/06/10</p>
+                                </div>
+                                <div class="tools">
+                                    <div class="fav">
+                                        <img src="images/fav_checked.png" alt="">
+                                    </div>
+                                    <div class="edit">
+                                        <img src="images/edit.png" alt="">
+                                    </div>
+                                </div>
+                        </li>
+                    </ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</body>
+
+</html>
