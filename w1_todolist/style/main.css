@@ -71,6 +71,16 @@ header {
     header nav li.active {
       border-bottom: 5px solid #7572f3; }
 
+.input_new {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  padding: .5rem 1rem;
+  font-size: 1rem; }
+
 .todo_list {
   display: -webkit-box;
   display: -webkit-flex;
@@ -116,6 +126,8 @@ header {
     -webkit-order: 1;
     -ms-flex-order: 1;
     order: 1; }
+    .todo_list li.editing {
+      padding: 0; }
     .todo_list li:hover {
       -webkit-box-shadow: 5px 10px 20px rgba(184, 184, 184, 0.5);
       box-shadow: 5px 10px 20px rgba(184, 184, 184, 0.5);
@@ -190,6 +202,85 @@ header {
         .todo_list li .tools > div img {
           width: 100%;
           display: block; }
+    .todo_list li .list_header {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      width: 100%;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #ccc;
+      padding: 1rem; }
+    .todo_list li .list_settings {
+      margin-left: 10%;
+      padding: 1rem;
+      width: 70%; }
+      .todo_list li .list_settings > div {
+        display: inline-block;
+        padding-right: 2rem;
+        vertical-align: top; }
+    .todo_list li .list_footer {
+      display: block;
+      width: 100%;
+      font-size: 0;
+      padding: 1rem 0 0 0; }
+      .todo_list li .list_footer button {
+        display: inline-block;
+        width: 50%;
+        font-size: 1rem;
+        padding: 1rem;
+        border: 0;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#eee));
+        background-image: -webkit-linear-gradient(top, #f8f8f8, #eee);
+        background-image: -o-linear-gradient(top, #f8f8f8, #eee);
+        background-image: linear-gradient(to bottom, #f8f8f8, #eee);
+        color: #ccc;
+        outline: 0; }
+        .todo_list li .list_footer button.save {
+          color: #fff;
+          background-image: -webkit-gradient(linear, left top, left bottom, from(#a3a1f7), to(#68A3C9));
+          background-image: -webkit-linear-gradient(top, #a3a1f7, #68A3C9);
+          background-image: -o-linear-gradient(top, #a3a1f7, #68A3C9);
+          background-image: linear-gradient(to bottom, #a3a1f7, #68A3C9); }
+    .todo_list li .input_group .files {
+      width: 30px;
+      height: 30px;
+      display: block;
+      background-color: #aaa;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      text-align: center;
+      line-height: 26px;
+      color: #fff;
+      cursor: pointer; }
+    .todo_list li .input_group h4 {
+      margin-bottom: 10px; }
+    .todo_list li .input_group.input_area {
+      width: 100%; }
+      .todo_list li .input_group.input_area textarea {
+        width: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 1rem; }
 
 .input-task {
   display: block;

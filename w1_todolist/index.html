@@ -35,7 +35,9 @@
         <div class="container">
             <input type="text" placeholder="+ Add task" class="input-task my-5" v-model="newtask" @keyup.enter="addTodo">
             <ul class="todo_list">
-                <li v-for="item in filterTodolist" :class="{'done':item.completed,'fav':item.favorite}">
+                <li v-for="item in filterTodolist" 
+                v-if="item.id !== editObject.id"
+                :class="{'done':item.completed,'fav':item.favorite}">
                     <label :for="item.id" class="complet_check">
                         <input type="checkbox" name="" :id="item.id" v-model="item.completed">
                     </label>
@@ -56,23 +58,55 @@
                         </div>
                     </div>
                 </li>
-                <!-- <li class="fav">
-                                <label for="">
-                                    <input type="checkbox" name="" id="">
+                <li class="editing" v-for="item in filterTodolist" 
+                v-if="item.id == editObject.id"
+                :class="{'done':item.completed,'fav':item.favorite}"
+                >
+                    <div class="list_header">
+                            <label :for="item.id" class="complet_check">
+                                    <!-- <input type="checkbox" name="" :id="item.id" v-model="item.completed"> -->
                                 </label>
                                 <div class="memo">
-                                    <h4 class="mb-3">下午要去買東西</h4>
-                                    <p>2018/06/10</p>
+                                    <input type="text" v-model="editTitle" class="input_new">
                                 </div>
                                 <div class="tools">
-                                    <div class="fav">
-                                        <img src="images/fav_checked.png" alt="">
-                                    </div>
-                                    <div class="edit">
-                                        <img src="images/edit.png" alt="">
-                                    </div>
+                                        <div class="fav">
+                                            <label :for="item.id + 'fav'">
+                                                <input type="checkbox" name="" :id="item.id + 'fav'" v-model="item.favorite" hidden>
+                                                <img src="images/fav.png" alt="" v-if="item.favorite == false">
+                                                <img src="images/fav_checked.png" alt="" v-if="item.favorite == true">
+                                            </label>
+                                        </div>
+                                        <div class="edit" @click="editTodo(item)">
+                                            <img src="images/edit.png" alt="">
+                                        </div>
                                 </div>
-                        </li> -->
+                    </div>
+                    <div class="list_settings">
+                        <div class="input_group">
+                                <h4 class="">Deadline</h4>
+                                <input type="date">
+                        </div>
+                        <div class="input_group">
+                                <h4 class="">Files</h4>
+                                <label for="file_up" class="files">
+                                    +
+                                    <input type="file" id="file_up" hidden>
+                                </label>
+                                
+                        </div>
+                        <div class="input_group input_area">
+                            <h4 class="">Comments</h4>
+                            <textarea name="" id="" cols="30" rows="10" placeholder="text some comments"></textarea>
+                        </div>
+                        
+                    </div>
+                    <div class="list_footer">
+                        <button class="cancel" @click="cencelTodo">x Cancel</button>
+                        <button class="save" @click="saveTodo(item)">Save task</button>
+                    </div>
+                                
+                </li>
             </ul>
         </div>
     </div>
@@ -110,6 +144,15 @@
                 },editTodo: function(item){
                     this.editObject = item;
                     this.editTitle = item.title;
+                },cencelTodo: function(){
+                    this.editObject = {}
+                },saveTodo: function(item){
+                    if(!this.editTitle.trim()){
+                        return;
+                    }
+                    item.title = this.editTitle;
+                    this.editTitle = '';
+                    this.editObject = {};
                 },
             },computed: {
                 filterTodolist : function(){

@@ -81,6 +81,14 @@ header {
       }
   }
 }
+.input_new{
+    appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
 .todo_list{
     display: flex;
     flex-direction: column;
@@ -98,6 +106,9 @@ header {
         transition: .3s;
         margin-bottom: 20px;
         order:1;
+        &.editing{
+            padding: 0;
+        }
         &:hover{
             box-shadow: 5px 10px 20px rgba(#B8B8B8,.5);
             transform: scale(1.03);
@@ -165,6 +176,78 @@ header {
                     display: block;
                 }
             }
+        }
+
+        // editing
+        .list_header{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            width: 100%;
+            padding-bottom: 1rem;
+            border-bottom:1px solid #ccc;
+            padding: 1rem;
+        }
+        .list_settings{
+            margin-left: 10%;
+            padding: 1rem;
+            width: 70%;
+            
+            &>div{
+                display: inline-block;
+                padding-right: 2rem;
+                vertical-align: top;
+            }
+        }
+        .list_footer{
+            display: block;
+            width: 100%;
+            font-size: 0;
+            padding: 1rem 0 0 0;
+            button{
+                display: inline-block;
+                width: 50%;
+                font-size: 1rem;
+                padding: 1rem;
+                border: 0;
+                background-image: linear-gradient(to bottom, #f8f8f8, #eee);
+                color:#ccc;
+                outline: 0;
+                &.save{
+                    color:#fff;
+                    background-image: linear-gradient(to bottom, #a3a1f7, #68A3C9);
+                }
+            }
+        }
+        .input_group{
+            .files{
+                width: 30px;
+                height: 30px;
+                display: block;
+                background-color: #aaa;
+                border-radius: 50%;
+                font-size: 1.5rem;
+                text-align: center;
+                line-height: 26px;
+                color:#fff;
+                cursor: pointer;
+            }
+            h4{
+                margin-bottom: 10px;
+            }
+            &.input_area{
+                width: 100%;
+                textarea{
+                    width: 100%;
+                    appearance: none;
+                    border: 1px solid #ccc;
+                    border-radius: 3px;
+                    padding: 1rem;
+                }
+            }
+            
         }
     }   
 }
