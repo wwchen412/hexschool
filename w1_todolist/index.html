@@ -10,31 +10,32 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div class="head_title">
-                <h1 class="text-center">Todolist</h1>
-                <div class="sib_title">
-                    <h3>2018/06/10 SAT</h3>
-                    <h3>
-                        <span class="big">4</span> Tasks left</h3>
-                </div>
-
-            </div>
-            <nav>
-                <ul class="text-center">
-                    <li class="active">All</li>
-                    <li>In progress</li>
-                    <li>Completed</li>
-                </ul>
-            </nav>
-        </div>
-    </header>
     <div id="app">
+        <header>
+            <div class="container">
+                <div class="head_title">
+                    <h1 class="text-center">Todolist</h1>
+                    <div class="sib_title">
+                        <h3>2018/06/10 SAT</h3>
+                        <h3>
+                            <span class="big">4</span> Tasks left</h3>
+                    </div>
+
+                </div>
+                <nav>
+                    <ul class="text-center">
+                        <li :class="{'active':visiblity == 'all'}" @click="visiblity='all'">All</li>
+                        <li :class="{'active':visiblity == 'progress'}"  @click="visiblity='progress'">In progress</li>
+                        <li :class="{'active':visiblity == 'completed'}"  @click="visiblity='completed'">Completed</li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
         <div class="container">
             <input type="text" placeholder="+ Add task" class="input-task my-5" v-model="newtask" @keyup.enter="addTodo">
             <ul class="todo_list">
-                <li v-for="item in todolist" :class="{'done':item.completed,'fav':item.favorite}">
+                <li v-for="item in filterTodolist" :class="{'done':item.completed,'fav':item.favorite}">
                     <label :for="item.id" class="complet_check">
                         <input type="checkbox" name="" :id="item.id" v-model="item.completed">
                     </label>
@@ -50,7 +51,7 @@
                                 <img src="images/fav_checked.png" alt="" v-if="item.favorite == true">
                             </label>
                         </div>
-                        <div class="edit">
+                        <div class="edit" @click="editTodo(item)">
                             <img src="images/edit.png" alt="">
                         </div>
                     </div>
@@ -80,8 +81,17 @@
         var app = new Vue({
             el: '#app',
             data: {
-                todolist: [],
+                todolist: [{
+                    id: '1234',
+                    title: 'Using Vue.js',
+                    completed: false,
+                    favorite: false,
+                },
+                ],
                 newtask: '',
+                visiblity: 'all',
+                editObject :{},
+                editTitle:'',
             }, methods: {
                 // 新增
                 addTodo: function () {
@@ -97,7 +107,35 @@
                         favorite: false,
                     })
                     this.newtask = '';
+                },editTodo: function(item){
+                    this.editObject = item;
+                    this.editTitle = item.title;
                 },
+            },computed: {
+                filterTodolist : function(){
+                    
+                    if(this.visiblity == 'all'){
+                        return this.todolist;
+                    }else if(this.visiblity == 'progress'){
+                        let filterList = [];
+                        this.todolist.forEach(function(item){
+                            if(!item.completed){
+                                filterList.push(item);
+                            }
+                        })
+                        return filterList;
+                    }else if(this.visiblity == 'completed'){
+                        let filterList = [];
+                        this.todolist.forEach(function(item){
+                            if(item.completed){
+                                filterList.push(item);
+                            }
+                        })
+                        return filterList;
+                    }                       
+                    
+                    
+                }
             }
         })
     </script>

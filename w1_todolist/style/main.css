@@ -19,7 +19,8 @@ body {
 
 .container {
   max-width: 940px;
-  margin: auto; }
+  margin: auto;
+  padding: 0 1rem; }
 
 .text-center {
   text-align: center; }
@@ -60,12 +61,15 @@ header {
     background: rgba(0, 0, 0, 0.1);
     -webkit-transition: .1s;
     -o-transition: .1s;
-    transition: .1s; }
+    transition: .1s;
+    border-bottom: 5px solid transparent; }
     header nav li.active, header nav li:hover {
       background: transparent;
       -webkit-transition: .1s;
       -o-transition: .1s;
       transition: .1s; }
+    header nav li.active {
+      border-bottom: 5px solid #7572f3; }
 
 .todo_list {
   display: -webkit-box;
