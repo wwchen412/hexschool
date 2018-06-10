@@ -16,7 +16,8 @@
                 <h1 class="text-center">Todolist</h1>
                 <div class="sib_title">
                     <h3>2018/06/10 SAT</h3>
-                    <h3><span class="big">4</span> Tasks left</h3>
+                    <h3>
+                        <span class="big">4</span> Tasks left</h3>
                 </div>
 
             </div>
@@ -31,26 +32,30 @@
     </header>
     <div id="app">
         <div class="container">
-                <input type="text" placeholder="+ Add task" class="input-task my-5" v-model="newtask" @keyup.enter="addTodo">
-                <ul class="todo_list">
-                        <li v-for="item in todolist"  :class="{'done':item.completed}">
-                            <label :for="item.id">
-                                <input type="checkbox" name="" :id="item.id" v-model="item.completed" >
+            <input type="text" placeholder="+ Add task" class="input-task my-5" v-model="newtask" @keyup.enter="addTodo">
+            <ul class="todo_list">
+                <li v-for="item in todolist" :class="{'done':item.completed,'fav':item.favorite}">
+                    <label :for="item.id" class="complet_check">
+                        <input type="checkbox" name="" :id="item.id" v-model="item.completed">
+                    </label>
+                    <div class="memo">
+                        <h4 class="mb-3">{{item.title}}</h4>
+                        <p>2018/06/10</p>
+                    </div>
+                    <div class="tools">
+                        <div class="fav">
+                            <label :for="item.id + 'fav'">
+                                <input type="checkbox" name="" :id="item.id + 'fav'" v-model="item.favorite" hidden>
+                                <img src="images/fav.png" alt="" v-if="item.favorite == false">
+                                <img src="images/fav_checked.png" alt="" v-if="item.favorite == true">
                             </label>
-                            <div class="memo">
-                                <h4 class="mb-3">{{item.title}}</h4>
-                                <p>2018/06/10</p>
-                            </div>
-                            <div class="tools">
-                                <div class="fav">
-                                    <img src="images/fav.png" alt="">
-                                </div>
-                                <div class="edit">
-                                    <img src="images/edit.png" alt="">
-                                </div>
-                            </div>
-                        </li>
-                        <!-- <li class="fav">
+                        </div>
+                        <div class="edit">
+                            <img src="images/edit.png" alt="">
+                        </div>
+                    </div>
+                </li>
+                <!-- <li class="fav">
                                 <label for="">
                                     <input type="checkbox" name="" id="">
                                 </label>
@@ -67,33 +72,34 @@
                                     </div>
                                 </div>
                         </li> -->
-                    </ul>
+            </ul>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script>
-    var app = new Vue({
-        el:'#app',
-        data:{
-            todolist:[],
-            newtask:'',
-        },methods:{
-            // 新增
-            addTodo : function(){
-                let newValue = this.newtask.trim();
-                let todoId = Math.floor(Date.now());
-                if(!newValue){
-                    return;
-                }
-                this.todolist.push({
-                    id: todoId,
-                    title: newValue,
-                    completed: false,
-                })
-                this.newtask = '';
-            },
-        }
-    })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                todolist: [],
+                newtask: '',
+            }, methods: {
+                // 新增
+                addTodo: function () {
+                    let newValue = this.newtask.trim();
+                    let todoId = Math.floor(Date.now());
+                    if (!newValue) {
+                        return;
+                    }
+                    this.todolist.push({
+                        id: todoId,
+                        title: newValue,
+                        completed: false,
+                        favorite: false,
+                    })
+                    this.newtask = '';
+                },
+            }
+        })
     </script>
 </body>
 

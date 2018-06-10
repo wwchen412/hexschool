@@ -99,10 +99,11 @@ header {
         }
         &.fav{
             border: 1px solid #AA9AFF;
-            order: 0;
+            order: 0 !important;
         }
         &.done{
             background: #f2f2f2;
+            order:100;
             h4{
                 text-decoration: line-through;
             }
@@ -120,29 +121,30 @@ header {
             color:#aaa;
             font-size: 0.8em;
         }
-        label{
+        .complet_check{
             position: relative;
             flex: 0 0 10%;
-        }
-        input[type="checkbox"]{
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #ccc;
-            border-radius: 50%;
-            outline: none;
-            &:checked{
-                @extend .gadient;
-                border-color: transparent;
-                background-size: cover;
-                &:before{
-                    content: '✓';
-                    color:#fff;
-                    position: absolute;
-                    left:22px;
+            input[type="checkbox"]{
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                border: 2px solid #ccc;
+                border-radius: 50%;
+                outline: none;
+                &:checked{
+                    @extend .gadient;
+                    border-color: transparent;
+                    background-size: cover;
+                    &:before{
+                        content: '✓';
+                        color:#fff;
+                        position: absolute;
+                        left:22px;
+                    }
                 }
             }
         }
+        
         .memo{
             flex: 0 0 70%;
         }

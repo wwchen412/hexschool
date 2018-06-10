@@ -11,7 +11,7 @@
 body {
   background-color: #F8F8F8; }
 
-.gadient, header, .todo_list li input[type="checkbox"]:checked {
+.gadient, header, .todo_list li .complet_check input[type="checkbox"]:checked {
   background-image: -webkit-gradient(linear, left top, right top, from(#a3a1f7), to(#68A3C9));
   background-image: -webkit-linear-gradient(left, #a3a1f7, #68A3C9);
   background-image: -o-linear-gradient(left, #a3a1f7, #68A3C9);
@@ -120,12 +120,16 @@ header {
       transform: scale(1.03); }
     .todo_list li.fav {
       border: 1px solid #AA9AFF;
-      -webkit-box-ordinal-group: 1;
-      -webkit-order: 0;
-      -ms-flex-order: 0;
-      order: 0; }
+      -webkit-box-ordinal-group: 1 !important;
+      -webkit-order: 0 !important;
+      -ms-flex-order: 0 !important;
+      order: 0 !important; }
     .todo_list li.done {
-      background: #f2f2f2; }
+      background: #f2f2f2;
+      -webkit-box-ordinal-group: 101;
+      -webkit-order: 100;
+      -ms-flex-order: 100;
+      order: 100; }
       .todo_list li.done h4 {
         text-decoration: line-through; }
       .todo_list li.done:hover {
@@ -141,29 +145,29 @@ header {
     .todo_list li p {
       color: #aaa;
       font-size: 0.8em; }
-    .todo_list li label {
+    .todo_list li .complet_check {
       position: relative;
       -webkit-box-flex: 0;
       -webkit-flex: 0 0 10%;
       -ms-flex: 0 0 10%;
       flex: 0 0 10%; }
-    .todo_list li input[type="checkbox"] {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #ccc;
-      border-radius: 50%;
-      outline: none; }
-      .todo_list li input[type="checkbox"]:checked {
-        border-color: transparent;
-        background-size: cover; }
-        .todo_list li input[type="checkbox"]:checked:before {
-          content: '✓';
-          color: #fff;
-          position: absolute;
-          left: 22px; }
+      .todo_list li .complet_check input[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        outline: none; }
+        .todo_list li .complet_check input[type="checkbox"]:checked {
+          border-color: transparent;
+          background-size: cover; }
+          .todo_list li .complet_check input[type="checkbox"]:checked:before {
+            content: '✓';
+            color: #fff;
+            position: absolute;
+            left: 22px; }
     .todo_list li .memo {
       -webkit-box-flex: 0;
       -webkit-flex: 0 0 70%;
