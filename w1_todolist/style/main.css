@@ -6,7 +6,11 @@
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: normal;
-  list-style: none; }
+  list-style: none;
+  font-size: 16px; }
+
+@media screen and (max-width: 768px) {
+  font-size: 14px; }
 
 body {
   background-color: #F8F8F8; }
@@ -90,10 +94,10 @@ header {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column; }
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse; }
   .todo_list li {
     padding: 1rem;
     background-color: #fff;
@@ -139,16 +143,16 @@ header {
       transform: scale(1.03); }
     .todo_list li.fav {
       border: 1px solid #AA9AFF;
-      -webkit-box-ordinal-group: 1 !important;
-      -webkit-order: 0 !important;
-      -ms-flex-order: 0 !important;
-      order: 0 !important; }
+      -webkit-box-ordinal-group: 10000 !important;
+      -webkit-order: 9999 !important;
+      -ms-flex-order: 9999 !important;
+      order: 9999 !important; }
     .todo_list li.done {
       background: #f2f2f2;
-      -webkit-box-ordinal-group: 101;
-      -webkit-order: 100;
-      -ms-flex-order: 100;
-      order: 100; }
+      -webkit-box-ordinal-group: 1;
+      -webkit-order: 0;
+      -ms-flex-order: 0;
+      order: 0; }
       .todo_list li.done h4 {
         text-decoration: line-through; }
       .todo_list li.done:hover {
@@ -302,3 +306,7 @@ header {
     color: #a3a1f7; }
   .input-task::placeholder {
     color: #a3a1f7; }
+
+input:focus, textarea:focus {
+  border-color: #a3a1f7;
+  outline: 0; }

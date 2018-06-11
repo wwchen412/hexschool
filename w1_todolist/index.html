@@ -25,7 +25,7 @@
                 <nav>
                     <ul class="text-center">
                         <li :class="{'active':visiblity == 'all'}" @click="visiblity='all'">All</li>
-                        <li :class="{'active':visiblity == 'progress'}"  @click="visiblity='progress'">In progress</li>
+                        <li :class="{'active':visiblity == 'progress'}"  @click="visiblity='progress'">progress</li>
                         <li :class="{'active':visiblity == 'completed'}"  @click="visiblity='completed'">Completed</li>
                     </ul>
                 </nav>
@@ -118,9 +118,8 @@
             let year = time.getFullYear();
             let month = time.getMonth()+1;
             let date = time.getDate();
-            let day = time.getDay();
-            let dayEng = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
-            document.querySelector('.today').textContent = year+'/'+month+'/'+date+'  '+dayEng[day]+'.';
+            let day = ['Sun','Mon']
+            document.querySelector('.today').textContent = year+'/'+month+'/'+date;
         }
         var app = new Vue({
             el: '#app',
