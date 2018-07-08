@@ -22,14 +22,33 @@ img {
   flex-wrap: wrap;
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
-  justify-content: space-around; }
+  justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+  @media only screen and (min-width: 768px) {
+    .row {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row; } }
 
 .col-6 {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
-  max-width: 50%; }
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%; }
+  @media only screen and (min-width: 768px) {
+    .col-6 {
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 50%;
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%; } }
 
 .text-center {
   text-align: center; }
@@ -40,7 +59,10 @@ img {
   padding: 1rem 0;
   margin-bottom: 2rem; }
   #header h2 {
-    color: #50ff44; }
+    color: #50ff44;
+    font-size: 36px;
+    font-family: roboto bold;
+    font-style: italic; }
 
 .container {
   max-width: 620px;
@@ -54,6 +76,8 @@ img {
   padding: 0 1rem;
   background-color: #000;
   color: #fff; }
+  .comic_info .title h1 {
+    font-size: 36px; }
 
 .comic_info .lists {
   padding: 1rem; }
@@ -72,19 +96,32 @@ img {
 
 .comic_chapter {
   margin-top: 1rem;
-  font-weight: bold; }
+  font-weight: bold;
+  margin-bottom: 1rem; }
   .comic_chapter .title {
     background: #000;
     color: #fff;
     display: inline-block;
-    padding: .5rem 1rem; }
+    padding: 0.5rem 1rem; }
   .comic_chapter .lists {
-    padding: 22px;
+    padding: 22px 0;
     border: 4px solid #000; }
     .comic_chapter .lists a {
       color: #000;
-      text-decoration: none; }
+      text-decoration: none;
+      display: block; }
     .comic_chapter .lists .list {
-      margin-bottom: 1rem; }
+      padding: 0 22px;
+      line-height: 200%;
+      -webkit-transition: 0.2s;
+      -o-transition: 0.2s;
+      transition: 0.2s; }
+      .comic_chapter .lists .list:hover {
+        background: #000;
+        -webkit-transition: 0.2s;
+        -o-transition: 0.2s;
+        transition: 0.2s; }
+        .comic_chapter .lists .list:hover a {
+          color: #50ff44; }
       .comic_chapter .lists .list:last-child {
         margin-bottom: 0; }
