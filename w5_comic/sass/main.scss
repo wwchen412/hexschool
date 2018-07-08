@@ -1,0 +1,107 @@
+@import "_mixin.scss";
+
+// colors
+
+$maincolor: #50ff44;
+$darkcolor: #000;
+$lightcolor: #fff;
+
+// all settings
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.text-center {
+  text-align: center;
+}
+
+// header
+#header {
+  background-color: $darkcolor;
+  text-align: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  h2 {
+    color: $maincolor;
+  }
+}
+
+// comic
+.container {
+  max-width: 620px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.comic_cover {
+  border: 4px solid $darkcolor;
+}
+.comic_info {
+  .title {
+    padding: 0 1rem;
+    background-color: $darkcolor;
+    color: $lightcolor;
+  }
+  .lists {
+    padding: 1rem;
+    .list {
+      margin-bottom: 1%;
+      & > div {
+          display: inline-block;
+        &:first-child {
+          font-weight: bold;
+          min-width: 30%;
+        }
+      }
+    }
+  }
+  .introduce{
+      h4{
+          margin-bottom: 10px;
+      }
+    padding:0 1rem;
+  }
+}
+.comic_chapter{
+    margin-top: 1rem;
+    font-weight: bold;
+    .title{
+        background: $darkcolor;
+        color:$lightcolor;
+        display: inline-block;
+        padding: .5rem 1rem;
+    }
+    .lists{
+        padding: 22px;
+        border: 4px solid $darkcolor;
+    a{
+        color:$darkcolor;
+        text-decoration: none;
+        
+    }
+    .list{
+        margin-bottom: 1rem;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+    }
+}
