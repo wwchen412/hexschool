@@ -75,13 +75,34 @@ h1,h2,h3,h4,h5,p{
                 background-color: $maincolor;
             }
         }
+        &.done{
+            span{
+                background-color: $maincolor;
+                border-color: $maincolor;
+                &:after{
+                    content: '\f00c';
+                    position: absolute;
+                    top:55%;
+                    left: 50%;
+                    transform: translate(-50%,-50%) scale(.8);
+                    font-family: Font Awesome\ 5 Free;
+                    font-size: .5rem;
+                    font-weight: 900;
+                    font-variant: normal;
+                    text-rendering: auto;
+                    line-height: 150%;
+                    color:#fff;
+                    
+                } 
+            }
+        }
     }
 }
 .form{
     .input-title{
         display: block;
         width: 100%;
-        margin:24px 0 8px;
+        margin:16px 0 8px;
     }
     label{
         width: 100%;
@@ -136,6 +157,10 @@ h1,h2,h3,h4,h5,p{
         padding: 10px 20px;
         height: 52px;
         outline: 0;
+    }
+    select{
+        @extend input;
+        background: transparent;
     }
     .error-tip{
         display: none;
