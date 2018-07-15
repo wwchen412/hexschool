@@ -125,3 +125,16 @@ img {
           color: #50ff44; }
       .comic_chapter .lists .list:last-child {
         margin-bottom: 0; }
+
+.comic_reader .reader-select-head > * {
+  display: inline-block; }
+
+.comic_reader .reader-select-head select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 5px 1rem;
+  padding-right: 2rem;
+  border: 2px solid #000;
+  border-radius: 0;
+  font-size: 1rem; }
